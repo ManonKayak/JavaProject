@@ -1,0 +1,18 @@
+services:
+  mysql:
+    image: mysql:8.0  # Version de MySQL, ajustez si nécessaire
+    container_name: programmeur_data
+    environment:
+      MYSQL_ROOT_PASSWORD: Vicente123@
+      MYSQL_DATABASE: programmeur
+    ports:
+      - "3306:3306"  # Expose le port 3306 de MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persiste les données de MySQL
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_data:
+networks:
+  mysql_network:

@@ -1,5 +1,5 @@
 import java.sql.*;
-import java.util.Objects;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,8 +7,7 @@ public class Main {
         ListeProgrammeurs listeProgrammeur = new ListeProgrammeurs();
 
         try{
-            Class.forName("jbdc:mysql://localhost:3306/bdtpjava");
-            Connection connection = DriverManager.getConnection("jbdc:mysql://localhost:3306/bdtpjava", "root", "Manon2004!");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdtpjava","root", "Manon2004!");
             PreparedStatement prstmt = connection.prepareStatement("SELECT * FROM programmeur");
             ResultSet resultSet = prstmt.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
@@ -37,8 +36,6 @@ public class Main {
             connection.close();
         }
         catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

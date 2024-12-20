@@ -1,8 +1,8 @@
 import java.util.List;
 
 public interface ActionsBDD {
-    public void AddDev(Programmeur dev);
-    public void DeleteDev(int id);
-    public Programmeur GetDev(int id);
-    public List<Programmeur> GetDevs();
+    void AddDev(Programmeur dev);
+    void DeleteDev(int id);
+    Programmeur GetDev(int id);
+    List<Programmeur> GetDevs();
 }

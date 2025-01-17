@@ -54,7 +54,7 @@ public class ActionsBDDImpl implements ActionsBDD {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Id non trouvee");
         }
     }
 
@@ -84,7 +84,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                     res.getString(10));
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("ID non trouvee");
+            return null;
         }
     }
 

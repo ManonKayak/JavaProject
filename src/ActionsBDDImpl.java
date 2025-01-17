@@ -8,14 +8,10 @@ import java.util.Properties;
 import java.util.Scanner;
 
 public class ActionsBDDImpl implements ActionsBDD {
-    private Properties _prop;
-    public ActionsBDDImpl(Properties prop) {
-        _prop = prop;
-    }
 
     private Connection GetConn() throws SQLException {
-        return DriverManager.getConnection(_prop.getProperty("DB_URL"),
-                _prop.getProperty("DB_USER"), _prop.getProperty("DB_PSSWD"));
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur",
+                "root", "Vicente123@");
     }
 
     @Override
@@ -23,19 +19,20 @@ public class ActionsBDDImpl implements ActionsBDD {
         try {
             var conn = GetConn();
             var stmt = conn.prepareStatement("INSERT INTO " +
-                    "programmer (lastname, firstname, address, pseudo, " +
-                    "manager, hobby, birth_year, salary, bonus) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?)");
+                    "programmeur (ID, NOM, PRENOM, ADRESSE, PSEUDO, " +
+                    "MANAGER, HOBBY, ANNAISSANCE, SALAIRE, PRIME) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?,?)");
 
-            stmt.setString(1, dev.getNom());
-            stmt.setString(2, dev.getPrenom());
-            stmt.setString(3, dev.getAdresse());
-            stmt.setString(4, dev.getPseudo());
-            stmt.setString(5, dev.getManager());
-            stmt.setString(6, dev.getHobby());
-            stmt.setInt(7, dev.getAnNaissance());
-            stmt.setDouble(8, dev.getSalaire());
-            stmt.setDouble(9, dev.getPrime());
+            stmt.setInt(1, dev.getId());
+            stmt.setString(2, dev.getNom());
+            stmt.setString(3, dev.getPrenom());
+            stmt.setString(4, dev.getAdresse());
+            stmt.setString(5, dev.getPseudo());
+            stmt.setString(6, dev.getManager());
+            stmt.setString(7, dev.getHobby());
+            stmt.setInt(8, dev.getAnNaissance());
+            stmt.setDouble(9, dev.getSalaire());
+            stmt.setDouble(10, dev.getPrime());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -47,7 +44,7 @@ public class ActionsBDDImpl implements ActionsBDD {
     public void DeleteDev(int id) throws RuntimeException {
         try {
             var conn = GetConn();
-            var stmt = conn.prepareStatement("DELETE FROM programmer " +
+            var stmt = conn.prepareStatement("DELETE FROM programmeur " +
                     "WHERE id = ?");
 
             stmt.setInt(1, id);
@@ -64,10 +61,10 @@ public class ActionsBDDImpl implements ActionsBDD {
         try {
             var conn = GetConn();
             var stmt = conn.prepareStatement("SELECT " +
-                    "(id, lastname, firstname, address, manager, " +
-                    "hobby, birth_year, salary, bonus, pseudo) " +
-                    "FROM programmer " +
-                    "WHERE id = ?");
+                    "(ID, NOM, PRENOM, ADRESSE, MANAGER, " +
+                    "HOBBY, ANNAISSANCE, SALAIRE, PRIME, PSEUDO) " +
+                    "FROM programmeur " +
+                    "WHERE ID = ?");
 
             stmt.setInt(1, id);
 
@@ -95,9 +92,9 @@ public class ActionsBDDImpl implements ActionsBDD {
             try {
                 var conn = GetConn();
                 var stmt = conn.prepareStatement("SELECT " +
-                        "(id, lastname, firstname, address, manager, " +
-                        "hobby, birth_year, salary, bonus, pseudo) " +
-                        "FROM programmer");
+                        "(ID, NOM, PRENOM, ADRESSE, MANAGER, " +
+                        "HOBBY, ANNAISSANCE, SALAIRE, PRIME, PSEUDO) " +
+                        "FROM programmeur");
 
                 var res = stmt.executeQuery();
                 var ret = new ArrayList<Programmeur>();
@@ -150,7 +147,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                 dev.setNom(new_nom);
                 try {
                     var conn = GetConn();
-                    var stmt = conn.prepareStatement("UPDATE programmer" +
+                    var stmt = conn.prepareStatement("UPDATE programmeur" +
                             "SET lastname = ?\n" +
                             "WHERE id = ?");
 

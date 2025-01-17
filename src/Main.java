@@ -38,8 +38,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        Properties prop = new Properties();
-        ActionsBDDImpl action = new ActionsBDDImpl(prop);
+        ActionsBDDImpl action = new ActionsBDDImpl();
         List<Programmeur> listeProgrammeur = new ArrayList<>();
             try{
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
@@ -59,7 +58,7 @@ public class Main {
                     float prime = resultSet.getFloat("PRIME");
                     String pseudo = resultSet.getString("PSEUDO");
                     Programmeur programmeur = new Programmeur(id,nom, prenom,adresse,manager,hobby, anNaissance, salaire, prime, pseudo);
-                    action.AddDev(programmeur);
+                    listeProgrammeur.add(programmeur);
             }
 
 
@@ -70,7 +69,7 @@ public class Main {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
             Statement stmt = connection.createStatement();
             stmt.execute("CREATE TABLE programmeur(" +
-                    "ID INT PRIMARY KEY," +
+                    "ID INT AUTO_INCREMENT PRIMARY KEY," +
                     "NOM VARCHAR(50) NOT NULL," +
                     "PRENOM VARCHAR(50) NOT NULL," +
                     "ADRESSE VARCHAR(50) NOT NULL," +
@@ -81,9 +80,9 @@ public class Main {
                     "PRIME FLOAT NOT NULL," +
                     "PSEUDO VARCHAR(50) NOT NULL)");
         }
-            Menu.afficherMenu(listeProgrammeur);
+            Menu.afficherMenu();
 
-        Menu.afficherMenu(listeProgrammeur);
+        Menu.afficherMenu();
 
     }
 }

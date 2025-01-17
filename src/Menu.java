@@ -1,6 +1,6 @@
 import java.util.*;
 public class Menu {
-    static void afficherMenu(List<Programmeur> listeProgrammeurs){
+    static void afficherMenu(){
 
         boolean run = true;
 
@@ -17,8 +17,8 @@ public class Menu {
             Scanner scanChoix = new Scanner(System.in);
             String choix = scanChoix.nextLine();
 
-            Properties prop = new Properties();
-            ActionsBDDImpl action = new ActionsBDDImpl(prop);
+            ActionsBDDImpl action = new ActionsBDDImpl();
+            List<Programmeur> listeProgrammeurs = action.GetDevs();
 
             switch(choix) {
                 case "1":

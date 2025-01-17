@@ -37,7 +37,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        ListeProgrammeurs listeProgrammeur = new ListeProgrammeurs();
+        Properties prop = new Properties();
+        ActionsBDDImpl action = new ActionsBDDImpl(prop);
+        List<Programmeur> listeProgrammeur = new ArrayList<>();
             try{
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
             PreparedStatement prstmt = connection.prepareStatement("SELECT * FROM programmeur");
@@ -56,13 +58,13 @@ public class Main {
                     float prime = resultSet.getFloat("PRIME");
                     String pseudo = resultSet.getString("PSEUDO");
                     Programmeur programmeur = new Programmeur(id,nom, prenom,adresse,manager,hobby, anNaissance, salaire, prime, pseudo);
-                    listeProgrammeur.addProgrammeur(programmeur);
+                    action.AddDev(programmeur);
             }
 
-            for(Programmeur programmeur : listeProgrammeur.liste_programmeur_){
+            for(Programmeur programmeur : action.GetDevs()){
                 System.out.println(programmeur);
             }
-            for(Programmeur programmeur : listeProgrammeur.liste_programmeur_){
+            for(Programmeur programmeur : action.GetDevs()){
                 if(!Objects.equals(programmeur.getNom(), "Simpson")){
                     System.out.println(programmeur);
                 }

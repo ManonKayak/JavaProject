@@ -1,6 +1,6 @@
 import java.util.*;
 public class Menu {
-    void afficherMenu(ListeProgrammeurs listeProgrammeurs){
+    static void afficherMenu(List<Programmeur> listeProgrammeurs){
 
         boolean run = true;
 
@@ -17,11 +17,13 @@ public class Menu {
             Scanner scanChoix = new Scanner(System.in);
             String choix = scanChoix.nextLine();
 
-            ActionsBDDImpl action = new ActionsBDDImpl();
+            Properties prop = new Properties();
+            ActionsBDDImpl action = new ActionsBDDImpl(prop);
 
             switch(choix) {
                 case "1":
                     List<Programmeur> programmeurs = action.GetDevs();
+                    System.out.println(programmeurs);
                     break;
                 case "2":
                     System.out.println("Entrez l'identifiant du programmeur a afficher :");
@@ -35,11 +37,17 @@ public class Menu {
                     scanIdProg = new Scanner(System.in);
                     IdProg = scanIdProg.nextInt();
                     action.DeleteDev(IdProg);
-                    System.out.println("Programmeur " + IdProg + " a ete supprime");
+                    System.out.println("Programmeur " + IdProg + " a ete supprime !");
                     break;
                 case "4":
+                    // on doit récupérer les infos pour pouvoir initialiser le programmeur
+                    programmeur = new Programmeur();
+                    action.AddDev(programmeur);
+                    System.out.println("Le programmeur a bien ete ajoute !");
                     break;
                 case "5":
+                    System.out.println("Entrez l'identifiant du programmeur a modifier :");
+
                     break;
                 case "6":
                     run = false;

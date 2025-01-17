@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
+        while(true){
         try {
             // Étape 1 : Démarrer Docker Compose
             System.out.println("Démarrage de Docker Compose...");
@@ -80,8 +81,10 @@ public class Main {
                     "PRIME FLOAT NOT NULL," +
                     "PSEUDO VARCHAR(50) NOT NULL)");
         }
+            Menu.afficherMenu(listeProgrammeur);
 
         Menu.afficherMenu(listeProgrammeur);
 
     }
+}
 }

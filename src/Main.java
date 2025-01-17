@@ -61,14 +61,6 @@ public class Main {
                     action.AddDev(programmeur);
             }
 
-            for(Programmeur programmeur : action.GetDevs()){
-                System.out.println(programmeur);
-            }
-            for(Programmeur programmeur : action.GetDevs()){
-                if(!Objects.equals(programmeur.getNom(), "Simpson")){
-                    System.out.println(programmeur);
-                }
-            }
 
             prstmt.close();
             connection.close();

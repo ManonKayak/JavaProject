@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -35,8 +36,11 @@ public class ActionsBDDImpl implements ActionsBDD {
             stmt.setDouble(10, dev.getPrime());
 
             stmt.executeUpdate();
+
+            System.out.println("Le programmeur a bien ete ajoute !");
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Id non valide !");
         }
     }
 

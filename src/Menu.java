@@ -87,7 +87,6 @@ public class Menu {
 
                     programmeur = new Programmeur(IdProg, NomProg, PrenomProg, AdresseProg, ManagerProg, HobbyProg, NaissanceProg, SalaireProg, PrimeProg, PseudoProg);
                     action.AddDev(programmeur);
-                    System.out.println("Le programmeur a bien ete ajoute !");
                     break;
 
                 case "5":
@@ -97,8 +96,7 @@ public class Menu {
                     programmeur = action.GetDev(IdProg);
 
                     if(programmeur != null){
-
-
+                        action.ChangeDev();
                     }
                     else System.out.println("Le programmeur "+IdProg+" n'a pas ete trouve");
                     break;

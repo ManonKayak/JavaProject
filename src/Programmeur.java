@@ -6,13 +6,13 @@ public class Programmeur {
     private String manager;
     private String hobby;
     private int anNaissance;
-    private float salaire;
-    private float prime;
+    private double salaire;
+    private double prime;
     private String pseudo;
 
     public Programmeur(int id, String nom, String prenom, String adresse,
                        String manager, String hobby, int anNaissance,
-                       float salaire, float prime, String pseudo){
+                       double salaire, double prime, String pseudo){
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -69,7 +69,7 @@ public class Programmeur {
         this.anNaissance = anNaissance;
     }
 
-    public float getSalaire() {
+    public double getSalaire() {
         return salaire;
     }
 
@@ -77,7 +77,7 @@ public class Programmeur {
         this.salaire = salaire;
     }
 
-    public float getPrime() {
+    public double getPrime() {
         return prime;
     }
 

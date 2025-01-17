@@ -34,8 +34,8 @@ public class ActionsBDDImpl implements ActionsBDD {
             stmt.setString(5, dev.getManager());
             stmt.setString(6, dev.getHobby());
             stmt.setInt(7, dev.getAnNaissance());
-            stmt.setFloat(8, dev.getSalaire());
-            stmt.setFloat(9, dev.getPrime());
+            stmt.setDouble(8, dev.getSalaire());
+            stmt.setDouble(9, dev.getPrime());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try {
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmer" +
-                            "SET NOM = ?\n" +
+                            "SET lastname = ?\n" +
                             "WHERE id = ?");
 
                     stmt.setString(2, new_nom);

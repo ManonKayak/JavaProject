@@ -74,12 +74,12 @@ public class Menu {
                     int NaissanceProg = scanNaissanceProg.nextInt();
 
                     System.out.println("Salaire :");
-                    Scanner scanSalaireProg = new Scanner(System.in);
-                    float SalaireProg = scanSalaireProg.nextFloat();
+                    Scanner scanSalaireProg = new Scanner(System.in).useLocale(Locale.US);
+                    double SalaireProg = scanSalaireProg.nextDouble();
 
                     System.out.println("Prime :");
-                    Scanner scanPrimeProg = new Scanner(System.in);
-                    float PrimeProg = scanPrimeProg.nextFloat();
+                    Scanner scanPrimeProg = new Scanner(System.in).useLocale(Locale.US);
+                    double PrimeProg = scanPrimeProg.nextDouble();
 
                     System.out.println("Pseudo :");
                     Scanner scanPseudoProg = new Scanner(System.in);

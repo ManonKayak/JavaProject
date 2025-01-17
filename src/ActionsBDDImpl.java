@@ -89,34 +89,38 @@ public class ActionsBDDImpl implements ActionsBDD {
     }
 
     @Override
-    public List<Programmeur> GetDevs() {
-        try {
-            var conn = GetConn();
-            var stmt = conn.prepareStatement("SELECT " +
-                    "(id, lastname, firstname, address, manager, " +
-                    "hobby, birth_year, salary, bonus, pseudo) " +
-                    "FROM programmer");
+    public List<Programmeur> GetDevs(){
+            try {
+                var conn = GetConn();
+                var stmt = conn.prepareStatement("SELECT " +
+                        "(id, lastname, firstname, address, manager, " +
+                        "hobby, birth_year, salary, bonus, pseudo) " +
+                        "FROM programmer");
 
-            var res = stmt.executeQuery();
-            var ret = new ArrayList<Programmeur>();
+                var res = stmt.executeQuery();
+                var ret = new ArrayList<Programmeur>();
 
-            while(res.next()) {
-                var dev = new Programmeur(res.getInt(1),
-                        res.getString(2),
-                        res.getString(3),
-                        res.getString(4),
-                        res.getString(5),
-                        res.getString(6),
-                        res.getInt(7),
-                        res.getFloat(8),
-                        res.getFloat(9),
-                        res.getString(10));
-                ret.add(dev);
+                while (res.next()) {
+                    var dev = new Programmeur(res.getInt(1),
+                            res.getString(2),
+                            res.getString(3),
+                            res.getString(4),
+                            res.getString(5),
+                            res.getString(6),
+                            res.getInt(7),
+                            res.getFloat(8),
+                            res.getFloat(9),
+                            res.getString(10));
+                    ret.add(dev);
+                    return ret;
+                }
+
+
+            } catch (SQLException e) {
+                System.out.println("Error: The table is empty");
+                return null;
             }
 
-            return ret;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+            return null;
     }
 }

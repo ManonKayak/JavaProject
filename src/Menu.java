@@ -1,6 +1,6 @@
 import java.util.*;
 public class Menu {
-    void afficherMenu(ListeProgrammeurs listeProgrammeurs){
+    public static void afficherMenu(ListeProgrammeurs listeProgrammeurs){
 
         boolean run = true;
 
@@ -17,7 +17,8 @@ public class Menu {
             Scanner scanChoix = new Scanner(System.in);
             String choix = scanChoix.nextLine();
 
-            ActionsBDDImpl action = new ActionsBDDImpl();
+            Properties prop = new Properties();
+            ActionsBDDImpl action = new ActionsBDDImpl(prop);
 
             switch(choix) {
                 case "1":

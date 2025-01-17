@@ -2,39 +2,51 @@ import java.util.*;
 public class Menu {
     void afficherMenu(ListeProgrammeurs listeProgrammeurs){
 
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<< MENU >>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println("1. Afficher tous les programmeurs");
-        System.out.println("2. Afficher un programmeur");
-        System.out.println("3. Supprimer un programmeur");
-        System.out.println("4. Ajouter un programmeur");
-        System.out.println("5. Modifier le salaire");
-        System.out.println("6. Quitter le programme");
-        System.out.println("Quel est votre choix ?");
+        boolean run = true;
 
-        Scanner scanChoix = new Scanner(System.in);
-        String choix = scanChoix.nextLine();
+        while(run){
+            System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<< MENU >>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            System.out.println("1. Afficher tous les programmeurs");
+            System.out.println("2. Afficher un programmeur");
+            System.out.println("3. Supprimer un programmeur");
+            System.out.println("4. Ajouter un programmeur");
+            System.out.println("5. Modifier le salaire");
+            System.out.println("6. Quitter le programme");
+            System.out.println("Quel est votre choix ?");
 
-        switch(choix){
-            case "1":
-                // afficherTousProgrammeurs(listeProgrammeur);
-                break;
-            case "2":
-                System.out.println("Entrez l'identifiant du programmeur a afficher :");
-                Scanner scanIdProg = new Scanner(System.in);
-                String IdProg = scanIdProg.nextLine();
-                // afficherProgrammeurParId(IdProg, listeProgrammeur);
-                break;
-            case "3":
+            Scanner scanChoix = new Scanner(System.in);
+            String choix = scanChoix.nextLine();
 
-                break;
-            case "4":
-                break;
-            case "5":
-                break;
-            case "6":
-                break;
-            default:
-                break;
+            ActionsBDDImpl action = new ActionsBDDImpl();
+
+            switch(choix) {
+                case "1":
+                    List<Programmeur> programmeurs = action.GetDevs();
+                    break;
+                case "2":
+                    System.out.println("Entrez l'identifiant du programmeur a afficher :");
+                    Scanner scanIdProg = new Scanner(System.in);
+                    int IdProg = scanIdProg.nextInt();
+                    Programmeur programmeur = action.GetDev(IdProg);
+                    System.out.println(programmeur);
+                    break;
+                case "3":
+                    System.out.println("Entrez l'identifiant du programmeur a supprimer :");
+                    scanIdProg = new Scanner(System.in);
+                    IdProg = scanIdProg.nextInt();
+                    action.DeleteDev(IdProg);
+                    System.out.println("Programmeur " + IdProg + " a ete supprime");
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    run = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

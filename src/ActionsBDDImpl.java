@@ -36,8 +36,7 @@ public class ActionsBDDImpl implements ActionsBDD {
             stmt.setInt(7, dev.getAnNaissance());
             stmt.setFloat(8, dev.getSalaire());
             stmt.setFloat(9, dev.getPrime());
-
-            stmt.executeUpdate();
+            stmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

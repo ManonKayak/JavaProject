@@ -74,12 +74,12 @@ public class Main {
                     "NOM VARCHAR(50) NOT NULL," +
                     "PRENOM VARCHAR(50) NOT NULL," +
                     "ADRESSE VARCHAR(50) NOT NULL," +
+                    "PSEUDO VARCHAR(50) NOT NULL)"+
                     "MANAGER VARCHAR(50) NOT NULL," +
                     "HOBBY VARCHAR(50) NOT NULL," +
                     "ANNAISSANCE INT NOT NULL," +
                     "SALAIRE FLOAT NOT NULL," +
-                    "PRIME FLOAT NOT NULL," +
-                    "PSEUDO VARCHAR(50) NOT NULL)");
+                    "PRIME FLOAT NOT NULL,");
         }
             Menu.afficherMenu(listeProgrammeur);
 

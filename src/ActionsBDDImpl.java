@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class ActionsBDDImpl implements ActionsBDD {
     private Properties _prop;
@@ -118,5 +119,68 @@ public class ActionsBDDImpl implements ActionsBDD {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void ChangeDev(Programmeur dev) throws RuntimeException {
+        System.out.println("Que souhaitez-vous modifier ?");
+        System.out.println("1. Le nom");
+        System.out.println("2. Le prenom");
+        System.out.println("3. L'adresse");
+        System.out.println("4. Le manager");
+        System.out.println("5. Le hobby");
+        System.out.println("6. L'annee de naissance");
+        System.out.println("7. Le salaire");
+        System.out.println("8. La prime");
+        System.out.println("9. Le pseudo");
+
+        Scanner scanModif = new Scanner(System.in);
+        String modif = scanModif.nextLine();
+
+        switch (modif){
+            case "1":
+                System.out.println("Entrez le nouveau nom du programmeur :");
+                Scanner scanNomProg = new Scanner(System.in);
+                String new_nom = scanNomProg.nextLine();
+                dev.setNom(new_nom);
+                try {
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmer" +
+                            "SET NOM = ?\n" +
+                            "WHERE id = ?");
+
+                    stmt.setString(2, new_nom);
+                    stmt.setInt(3, dev.getId());
+
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            case "2":
+                break;
+
+            case "3":
+                break;
+
+            case "4":
+                break;
+
+            case "5":
+                break;
+
+            case "6":
+                break;
+
+            case "8":
+                break;
+
+            case "9":
+            default:
+                System.out.println("Option non valide !");
+                break;
+        }
+
     }
 }

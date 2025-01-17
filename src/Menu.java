@@ -25,13 +25,16 @@ public class Menu {
                     List<Programmeur> programmeurs = action.GetDevs();
                     System.out.println(programmeurs);
                     break;
+
                 case "2":
                     System.out.println("Entrez l'identifiant du programmeur a afficher :");
                     Scanner scanIdProg = new Scanner(System.in);
                     int IdProg = scanIdProg.nextInt();
                     Programmeur programmeur = action.GetDev(IdProg);
-                    System.out.println(programmeur);
+                    if(programmeur != null) System.out.println(programmeur);
+                    else System.out.println("Le programmeur "+IdProg+" n'a pas ete trouve");
                     break;
+
                 case "3":
                     System.out.println("Entrez l'identifiant du programmeur a supprimer :");
                     scanIdProg = new Scanner(System.in);
@@ -39,6 +42,7 @@ public class Menu {
                     action.DeleteDev(IdProg);
                     System.out.println("Programmeur " + IdProg + " a ete supprime !");
                     break;
+
                 case "4":
                     System.out.println("Entrez les informations du nouveau programmeur :");
                     System.out.println("Id :");
@@ -85,15 +89,26 @@ public class Menu {
                     action.AddDev(programmeur);
                     System.out.println("Le programmeur a bien ete ajoute !");
                     break;
+
                 case "5":
                     System.out.println("Entrez l'identifiant du programmeur a modifier :");
                     scanIdProg = new Scanner(System.in);
                     IdProg = scanIdProg.nextInt();
+                    programmeur = action.GetDev(IdProg);
+
+                    if(programmeur != null){
+
+
+                    }
+                    else System.out.println("Le programmeur "+IdProg+" n'a pas ete trouve");
                     break;
+
                 case "6":
                     run = false;
                     break;
+
                 default:
+                    System.out.println("Option non valide !");
                     break;
             }
         }

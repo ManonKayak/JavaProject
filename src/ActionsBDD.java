@@ -6,4 +6,6 @@ public interface ActionsBDD {
     void DeleteDev(int id);
     Programmeur GetDev(int id);
     List<Programmeur> GetDevs();
+
+    void ChangeDev(Programmeur dev);
 }

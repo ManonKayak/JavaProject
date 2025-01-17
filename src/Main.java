@@ -89,5 +89,7 @@ public class Main {
                     "PSEUDO VARCHAR(50) NOT NULL)");
         }
 
+        Menu.afficherMenu(listeProgrammeur);
+
     }
 }

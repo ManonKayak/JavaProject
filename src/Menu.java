@@ -75,11 +75,11 @@ public class Menu {
 
                     System.out.println("Prime :");
                     Scanner scanPrimeProg = new Scanner(System.in);
-                    float PrimeProg = scanNaissanceProg.nextFloat();
+                    float PrimeProg = scanPrimeProg.nextFloat();
 
                     System.out.println("Pseudo :");
                     Scanner scanPseudoProg = new Scanner(System.in);
-                    String PseudoProg = scanNaissanceProg.nextLine();
+                    String PseudoProg = scanPseudoProg.nextLine();
 
                     programmeur = new Programmeur(IdProg, NomProg, PrenomProg, AdresseProg, ManagerProg, HobbyProg, NaissanceProg, SalaireProg, PrimeProg, PseudoProg);
                     action.AddDev(programmeur);

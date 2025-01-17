@@ -1,12 +1,44 @@
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
+        try {
+            // Étape 1 : Démarrer Docker Compose
+            System.out.println("Démarrage de Docker Compose...");
+            ProcessBuilder dockerCompose = new ProcessBuilder(
+                    "docker-compose", "-f", "docker-compose.yml", "up", "-d"
+            );
+            Process composeProcess = dockerCompose.start();
+
+            // Étape 2 : Attendre que la base de données soit prête
+            System.out.println("Attente que la base de données soit prête...");
+            boolean baseDeDonneesPrete = false;
+            while (!baseDeDonneesPrete) {
+                ProcessBuilder verifierBase = new ProcessBuilder(
+                        "docker", "exec", "programmeur_data", "mysqladmin", "ping", "-h", "localhost", "--silent"
+                );
+                Process verifierProcess = verifierBase.start();
+                verifierProcess.waitFor();
+                baseDeDonneesPrete = (verifierProcess.exitValue() == 0); // Si 0, la base est prête
+                if (!baseDeDonneesPrete) {
+                    Thread.sleep(2000); // Attendre 2 secondes avant de réessayer
+                }
+            }
+            System.out.println("Base de données prête !");
+
+            // Étape 3 : Exécuter l'application principale
+            System.out.println("Lancement de l'application Java...");
+            // Ici, mettez votre code principal
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ListeProgrammeurs listeProgrammeur = new ListeProgrammeurs();
-
-        try{
+            try{
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
             PreparedStatement prstmt = connection.prepareStatement("SELECT * FROM programmeur");
             ResultSet resultSet = prstmt.executeQuery();

@@ -1,5 +1,10 @@
 import java.util.*;
 public class Menu {
+    public static void attendreUneTouche(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Appuyez sur Entrée pour continuer...");
+        scanner.nextLine(); // Attend que l'utilisateur appuie sur Entrée
+    }
     static void afficherMenu(){
 
         boolean run = true;
@@ -10,7 +15,7 @@ public class Menu {
             System.out.println("2. Afficher un programmeur");
             System.out.println("3. Supprimer un programmeur");
             System.out.println("4. Ajouter un programmeur");
-            System.out.println("5. Modifier le salaire");
+            System.out.println("5. Modifier une information de programmeur");
             System.out.println("6. Quitter le programme");
             System.out.println("Quel est votre choix ?");
 
@@ -23,7 +28,10 @@ public class Menu {
             switch(choix) {
                 case "1":
                     List<Programmeur> programmeurs = action.GetDevs();
-                    System.out.println(programmeurs);
+                    for (Programmeur element : programmeurs){
+                        System.out.println(element);
+                    }
+                    attendreUneTouche();
                     break;
 
                 case "2":
@@ -33,6 +41,7 @@ public class Menu {
                     Programmeur programmeur = action.GetDev(IdProg);
                     if(programmeur != null) System.out.println(programmeur);
                     else System.out.println("Le programmeur "+IdProg+" n'a pas ete trouve");
+                    attendreUneTouche();
                     break;
 
                 case "3":
@@ -41,6 +50,7 @@ public class Menu {
                     IdProg = scanIdProg.nextInt();
                     action.DeleteDev(IdProg);
                     System.out.println("Programmeur " + IdProg + " a ete supprime !");
+                    attendreUneTouche();
                     break;
 
                 case "4":
@@ -75,11 +85,11 @@ public class Menu {
 
                     System.out.println("Salaire :");
                     Scanner scanSalaireProg = new Scanner(System.in).useLocale(Locale.US);
-                    double SalaireProg = scanSalaireProg.nextDouble();
+                    float SalaireProg = scanSalaireProg.nextFloat();
 
                     System.out.println("Prime :");
                     Scanner scanPrimeProg = new Scanner(System.in).useLocale(Locale.US);
-                    double PrimeProg = scanPrimeProg.nextDouble();
+                    float PrimeProg = scanPrimeProg.nextFloat();
 
                     System.out.println("Pseudo :");
                     Scanner scanPseudoProg = new Scanner(System.in);
@@ -87,6 +97,7 @@ public class Menu {
 
                     programmeur = new Programmeur(IdProg, NomProg, PrenomProg, AdresseProg, ManagerProg, HobbyProg, NaissanceProg, SalaireProg, PrimeProg, PseudoProg);
                     action.AddDev(programmeur);
+                    attendreUneTouche();
                     break;
 
                 case "5":
@@ -94,19 +105,21 @@ public class Menu {
                     scanIdProg = new Scanner(System.in);
                     IdProg = scanIdProg.nextInt();
                     programmeur = action.GetDev(IdProg);
-
                     if(programmeur != null){
-                        action.ChangeDev();
+                        action.ChangeDev(programmeur);
                     }
                     else System.out.println("Le programmeur "+IdProg+" n'a pas ete trouve");
+                    attendreUneTouche();
                     break;
 
                 case "6":
                     run = false;
+                    System.exit(0);
                     break;
 
                 default:
                     System.out.println("Option non valide !");
+                    attendreUneTouche();
                     break;
             }
         }

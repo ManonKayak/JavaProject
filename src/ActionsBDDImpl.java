@@ -64,16 +64,10 @@ public class ActionsBDDImpl implements ActionsBDD {
     public Programmeur GetDev(int id) {
         try {
             var conn = GetConn();
-            var stmt = conn.prepareStatement("SELECT " +
-                    "(ID, NOM, PRENOM, ADRESSE, MANAGER, " +
-                    "HOBBY, ANNAISSANCE, SALAIRE, PRIME, PSEUDO) " +
-                    "FROM programmeur " +
-                    "WHERE ID = ?");
-
-            stmt.setInt(1, id);
-
+            var stmt = conn.prepareStatement("SELECT * FROM programmeur WHERE ID = ?;");
+            stmt.setInt(1,id);
             var res = stmt.executeQuery();
-
+            res.next();
             return new Programmeur(res.getInt(1),
                     res.getString(2),
                     res.getString(3),
@@ -95,11 +89,7 @@ public class ActionsBDDImpl implements ActionsBDD {
     public List<Programmeur> GetDevs(){
             try {
                 var conn = GetConn();
-                var stmt = conn.prepareStatement("SELECT " +
-                        "(ID, NOM, PRENOM, ADRESSE, MANAGER, " +
-                        "HOBBY, ANNAISSANCE, SALAIRE, PRIME, PSEUDO) " +
-                        "FROM programmeur");
-
+                var stmt = conn.prepareStatement("SELECT * FROM programmeur");
                 var res = stmt.executeQuery();
                 var ret = new ArrayList<Programmeur>();
 
@@ -115,19 +105,17 @@ public class ActionsBDDImpl implements ActionsBDD {
                             res.getFloat(9),
                             res.getString(10));
                     ret.add(dev);
-                    return ret;
+
                 }
+                return ret;
 
 
             } catch (SQLException e) {
                 System.out.println("Error: The table is empty");
                 return null;
             }
-
-            return null;
     }
 
-    @Override
     public void ChangeDev(Programmeur dev) throws RuntimeException {
         System.out.println("Que souhaitez-vous modifier ?");
         System.out.println("1. Le nom");
@@ -151,12 +139,12 @@ public class ActionsBDDImpl implements ActionsBDD {
                 dev.setNom(new_nom);
                 try {
                     var conn = GetConn();
-                    var stmt = conn.prepareStatement("UPDATE programmeur" +
-                            "SET lastname = ?\n" +
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET NOM = ?\n" +
                             "WHERE id = ?");
 
-                    stmt.setString(2, new_nom);
-                    stmt.setInt(3, dev.getId());
+                    stmt.setString(1, new_nom);
+                    stmt.setInt(2, dev.getId());
 
                     stmt.executeUpdate();
                 } catch (SQLException e) {
@@ -165,24 +153,149 @@ public class ActionsBDDImpl implements ActionsBDD {
                 break;
 
             case "2":
+                System.out.println("Entrez le nouveau prenom du programmeur :");
+                Scanner scanPrenomProg = new Scanner(System.in);
+                String new_prenom = scanPrenomProg.nextLine();
+                dev.setPrenom(new_prenom);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setString(1, new_prenom);
+                    stmt.setInt(2, dev.getId());
+
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "3":
+                System.out.println("Entrez la nouvelle adresse du programmeur :");
+                Scanner scanAdress = new Scanner(System.in);
+                String new_adress = scanAdress.nextLine();
+                dev.setAdresse(new_adress);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setString(1, new_adress);
+                    stmt.setInt(2, dev.getId());
+
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "4":
+                System.out.println("Entrez le nouveau manager du programmeur :");
+                Scanner scanManager = new Scanner(System.in);
+                String new_manager = scanManager.nextLine();
+                dev.setManager(new_manager);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setString(1, new_manager);
+                    stmt.setInt(2, dev.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "5":
+                System.out.println("Entrez le nouvel hobby du programmeur :");
+                Scanner scanHobby = new Scanner(System.in);
+                String new_hobby = scanHobby.nextLine();
+                dev.setHobby(new_hobby);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setString(1, new_hobby);
+                    stmt.setInt(2, dev.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "6":
+                System.out.println("Entrez la nouvelle annee de naissance du programmeur :");
+                Scanner scanAnNaissance = new Scanner(System.in);
+                int new_AnNaissance = Integer.parseInt(scanAnNaissance.nextLine());
+                dev.setAnNaissance(new_AnNaissance);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setInt(1, new_AnNaissance);
+                    stmt.setInt(2, dev.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            case "7":
+                System.out.println("Entrez le nouveau salaire du programmeur :");
+                Scanner scanSalaire = new Scanner(System.in);
+                float new_salaire = Float.parseFloat(scanSalaire.nextLine());
+                dev.setSalaire(new_salaire);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setFloat(1, new_salaire);
+                    stmt.setInt(2, dev.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "8":
+                System.out.println("Entrez la nouvelle prime du programmeur :");
+                Scanner scanPrime = new Scanner(System.in);
+                float new_prime = Float.parseFloat(scanPrime.nextLine());
+                dev.setPrime(new_prime);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setFloat(1, new_prime);
+                    stmt.setInt(2, dev.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 break;
 
             case "9":
+                System.out.println("Entrez le nouveau manager du programmeur :");
+                Scanner scanPseudo = new Scanner(System.in);
+                String new_pseudo = scanPseudo.nextLine();
+                dev.setPseudo(new_pseudo);
+                try{
+                    var conn = GetConn();
+                    var stmt = conn.prepareStatement("UPDATE programmeur " +
+                            "SET PRENOM = ?\n" +
+                            "WHERE id = ?");
+                    stmt.setString(1, new_pseudo);
+                    stmt.setInt(2, dev.getId());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             default:
                 System.out.println("Option non valide !");
                 break;

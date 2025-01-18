@@ -95,6 +95,15 @@ public class Programmeur {
 
     @Override
     public String toString(){
-        return "Nom : "+this.nom+"  Prenom : "+this.prenom+"    Année de naissance : "+this.anNaissance+"   Salaire : "+this.salaire+"  Prime : "+this.prime+"  Pseudo : "+this.pseudo;
+        return  String.format("%-15s: %d%n","Id",this.id)+
+                String.format("%-15s: %s%n","Nom",this.nom)+
+                String.format("%-15s: %s%n","Prenom",this.prenom)+
+                String.format("%-15s: %s%n","Adresse",this.adresse)+
+                String.format("%-15s: %s%n","Responsable",this.manager)+
+                String.format("%-15s: %s%n","Hobby",this.hobby)+
+                String.format("%-15s: %d%n","Naissance",this.anNaissance)+
+                String.format("%-15s: %.2f€%n","Salaire",this.salaire)+
+                String.format("%-15s: %.2f€%n","Prime",this.prime)+
+                String.format("%-15s: %s%n","Pseudo",this.pseudo);
     }
 }

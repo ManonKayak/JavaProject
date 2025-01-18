@@ -3,7 +3,14 @@ import java.sql.*;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 public class Main {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws SQLException the sql exception
+     */
     public static void main(String[] args) throws SQLException {
         while(true){
         try {
@@ -79,7 +86,6 @@ public class Main {
                     "PRIME FLOAT NOT NULL," +
                     "PSEUDO VARCHAR(50) NOT NULL)");
         }
-            Menu.afficherMenu();
 
         Menu.afficherMenu();
 

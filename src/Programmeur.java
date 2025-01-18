@@ -1,3 +1,6 @@
+/**
+ * The type Programmeur.
+ */
 public class Programmeur {
     private int id;
     private String nom;
@@ -10,6 +13,20 @@ public class Programmeur {
     private double prime;
     private String pseudo;
 
+    /**
+     * Instantiates a new Programmeur.
+     *
+     * @param id          the id
+     * @param nom         the nom
+     * @param prenom      the prenom
+     * @param adresse     the adresse
+     * @param manager     the manager
+     * @param hobby       the hobby
+     * @param anNaissance the an naissance
+     * @param salaire     the salaire
+     * @param prime       the prime
+     * @param pseudo      the pseudo
+     */
     public Programmeur(int id, String nom, String prenom, String adresse,
                        String manager, String hobby, int anNaissance,
                        double salaire, double prime, String pseudo){
@@ -25,70 +42,170 @@ public class Programmeur {
         this.pseudo = pseudo;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() { return id; }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) { this.id = id; }
 
+    /**
+     * Gets nom.
+     *
+     * @return the nom
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Sets nom.
+     *
+     * @param nom the nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Gets prenom.
+     *
+     * @return the prenom
+     */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     * Sets prenom.
+     *
+     * @param prenom the prenom
+     */
     public void setPrenom(String prenom) { this.prenom = prenom; }
 
+    /**
+     * Gets adresse.
+     *
+     * @return the adresse
+     */
     public String getAdresse() {
         return adresse;
     }
 
+    /**
+     * Sets adresse.
+     *
+     * @param adresse the adresse
+     */
     public void setAdresse(String adresse) { this.adresse = adresse; }
 
+    /**
+     * Gets manager.
+     *
+     * @return the manager
+     */
     public String getManager() {
         return manager;
     }
 
+    /**
+     * Sets manager.
+     *
+     * @param manager the manager
+     */
     public void setManager(String manager) { this.manager = manager; }
 
+    /**
+     * Gets hobby.
+     *
+     * @return the hobby
+     */
     public String getHobby() {
         return hobby;
     }
 
+    /**
+     * Sets hobby.
+     *
+     * @param hobby the hobby
+     */
     public void setHobby(String hobby) { this.hobby = hobby; }
 
+    /**
+     * Gets an naissance.
+     *
+     * @return the an naissance
+     */
     public int getAnNaissance() {
         return anNaissance;
     }
 
+    /**
+     * Sets an naissance.
+     *
+     * @param anNaissance the an naissance
+     */
     public void setAnNaissance(int anNaissance) {
         this.anNaissance = anNaissance;
     }
 
+    /**
+     * Gets salaire.
+     *
+     * @return the salaire
+     */
     public double getSalaire() {
         return salaire;
     }
 
+    /**
+     * Sets salaire.
+     *
+     * @param salaire the salaire
+     */
     public void setSalaire(float salaire) {
         this.salaire = salaire;
     }
 
+    /**
+     * Gets prime.
+     *
+     * @return the prime
+     */
     public double getPrime() {
         return prime;
     }
 
+    /**
+     * Sets prime.
+     *
+     * @param prime the prime
+     */
     public void setPrime(float prime) {
         this.prime = prime;
     }
 
+    /**
+     * Gets pseudo.
+     *
+     * @return the pseudo
+     */
     public String getPseudo() {
         return pseudo;
     }
 
+    /**
+     * Sets pseudo.
+     *
+     * @param pseudo the pseudo
+     */
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }

@@ -1,10 +1,21 @@
 import java.util.*;
+
+/**
+ * The type Menu.
+ */
 public class Menu {
+    /**
+     * Attendre une touche.
+     */
     public static void attendreUneTouche(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Appuyez sur Entrée pour continuer...");
         scanner.nextLine(); // Attend que l'utilisateur appuie sur Entrée
     }
+
+    /**
+     * Afficher menu.
+     */
     static void afficherMenu(){
 
         boolean run = true;
@@ -114,6 +125,7 @@ public class Menu {
 
                 case "6":
                     run = false;
+                    System.out.println("Au revoir !");
                     System.exit(0);
                     break;
 

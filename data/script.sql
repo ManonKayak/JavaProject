@@ -1,4 +1,4 @@
-create table programmer
+create table if not exists programmer
 (
     id   int auto_increment
         primary key,
@@ -12,3 +12,7 @@ create table programmer
     salary DECIMAL(6,2) not null,
     bonus DECIMAL(6,2) not null
 );
+
+ALTER TABLE programmer
+    MODIFY salary FLOAT4 NOT NULL,
+    MODIFY bonus FLOAT4 NOT NULL;

@@ -1,0 +1,99 @@
+Index: src/ActionsBDDImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.math.BigDecimal;\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Properties;\r\nimport java.util.Scanner;\r\n\r\npublic class ActionsBDDImpl implements ActionsBDD {\r\n    private Properties _prop;\r\n    public ActionsBDDImpl(Properties prop) {\r\n        _prop = prop;\r\n    }\r\n\r\n    private Connection GetConn() throws SQLException {\r\n        return DriverManager.getConnection(_prop.getProperty(\"DB_URL\"),\r\n                _prop.getProperty(\"DB_USER\"), _prop.getProperty(\"DB_PSSWD\"));\r\n    }\r\n\r\n    @Override\r\n    public void AddDev(Programmeur dev) throws RuntimeException {\r\n        try {\r\n            var conn = GetConn();\r\n            var stmt = conn.prepareStatement(\"INSERT INTO \" +\r\n                    \"programmer (lastname, firstname, address, pseudo, \" +\r\n                    \"manager, hobby, birth_year, salary, bonus) \" +\r\n                    \"VALUES (?,?,?,?,?,?,?,?,?)\");\r\n\r\n            stmt.setString(1, dev.getNom());\r\n            stmt.setString(2, dev.getPrenom());\r\n            stmt.setString(3, dev.getAdresse());\r\n            stmt.setString(4, dev.getPseudo());\r\n            stmt.setString(5, dev.getManager());\r\n            stmt.setString(6, dev.getHobby());\r\n            stmt.setInt(7, dev.getAnNaissance());\r\n            stmt.setFloat(8, dev.getSalaire());\r\n            stmt.setFloat(9, dev.getPrime());\r\n            stmt.execute();\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void DeleteDev(int id) throws RuntimeException {\r\n        try {\r\n            var conn = GetConn();\r\n            var stmt = conn.prepareStatement(\"DELETE FROM programmer \" +\r\n                    \"WHERE id = ?\");\r\n\r\n            stmt.setInt(1, id);\r\n\r\n            stmt.executeUpdate();\r\n\r\n        } catch (SQLException e) {\r\n            System.out.println(\"Id non trouvee\");\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public Programmeur GetDev(int id) {\r\n        try {\r\n            var conn = GetConn();\r\n            var stmt = conn.prepareStatement(\"SELECT \" +\r\n                    \"(id, lastname, firstname, address, manager, \" +\r\n                    \"hobby, birth_year, salary, bonus, pseudo) \" +\r\n                    \"FROM programmer \" +\r\n                    \"WHERE id = ?\");\r\n\r\n            stmt.setInt(1, id);\r\n\r\n            var res = stmt.executeQuery();\r\n\r\n            return new Programmeur(res.getInt(1),\r\n                    res.getString(2),\r\n                    res.getString(3),\r\n                    res.getString(4),\r\n                    res.getString(5),\r\n                    res.getString(6),\r\n                    res.getInt(7),\r\n                    res.getFloat(8),\r\n                    res.getFloat(9),\r\n                    res.getString(10));\r\n\r\n        } catch (SQLException e) {\r\n            System.out.println(\"ID non trouvee\");\r\n            return null;\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public List<Programmeur> GetDevs(){\r\n            try {\r\n                var conn = GetConn();\r\n                var stmt = conn.prepareStatement(\"SELECT \" +\r\n                        \"(id, lastname, firstname, address, manager, \" +\r\n                        \"hobby, birth_year, salary, bonus, pseudo) \" +\r\n                        \"FROM programmer\");\r\n\r\n                var res = stmt.executeQuery();\r\n                var ret = new ArrayList<Programmeur>();\r\n\r\n                while (res.next()) {\r\n                    var dev = new Programmeur(res.getInt(1),\r\n                            res.getString(2),\r\n                            res.getString(3),\r\n                            res.getString(4),\r\n                            res.getString(5),\r\n                            res.getString(6),\r\n                            res.getInt(7),\r\n                            res.getFloat(8),\r\n                            res.getFloat(9),\r\n                            res.getString(10));\r\n                    ret.add(dev);\r\n                    return ret;\r\n                }\r\n\r\n\r\n            } catch (SQLException e) {\r\n                System.out.println(\"Error: The table is empty\");\r\n                return null;\r\n            }\r\n\r\n            return null;\r\n    }\r\n\r\n    @Override\r\n    public void ChangeDev(Programmeur dev) throws RuntimeException {\r\n        System.out.println(\"Que souhaitez-vous modifier ?\");\r\n        System.out.println(\"1. Le nom\");\r\n        System.out.println(\"2. Le prenom\");\r\n        System.out.println(\"3. L'adresse\");\r\n        System.out.println(\"4. Le manager\");\r\n        System.out.println(\"5. Le hobby\");\r\n        System.out.println(\"6. L'annee de naissance\");\r\n        System.out.println(\"7. Le salaire\");\r\n        System.out.println(\"8. La prime\");\r\n        System.out.println(\"9. Le pseudo\");\r\n\r\n        Scanner scanModif = new Scanner(System.in);\r\n        String modif = scanModif.nextLine();\r\n\r\n        switch (modif){\r\n            case \"1\":\r\n                System.out.println(\"Entrez le nouveau nom du programmeur :\");\r\n                Scanner scanNomProg = new Scanner(System.in);\r\n                String new_nom = scanNomProg.nextLine();\r\n                dev.setNom(new_nom);\r\n                try {\r\n                    var conn = GetConn();\r\n                    var stmt = conn.prepareStatement(\"UPDATE programmer\" +\r\n                            \"SET NOM = ?\\n\" +\r\n                            \"WHERE id = ?\");\r\n\r\n                    stmt.setString(2, new_nom);\r\n                    stmt.setInt(3, dev.getId());\r\n\r\n                    stmt.executeUpdate();\r\n                } catch (SQLException e) {\r\n                    throw new RuntimeException(e);\r\n                }\r\n                break;\r\n\r\n            case \"2\":\r\n                break;\r\n\r\n            case \"3\":\r\n                break;\r\n\r\n            case \"4\":\r\n                break;\r\n\r\n            case \"5\":\r\n                break;\r\n\r\n            case \"6\":\r\n                break;\r\n\r\n            case \"8\":\r\n                break;\r\n\r\n            case \"9\":\r\n            default:\r\n                System.out.println(\"Option non valide !\");\r\n                break;\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ActionsBDDImpl.java b/src/ActionsBDDImpl.java
+--- a/src/ActionsBDDImpl.java	
++++ b/src/ActionsBDDImpl.java	
+@@ -34,9 +34,10 @@
+             stmt.setString(5, dev.getManager());
+             stmt.setString(6, dev.getHobby());
+             stmt.setInt(7, dev.getAnNaissance());
+-            stmt.setFloat(8, dev.getSalaire());
+-            stmt.setFloat(9, dev.getPrime());
+-            stmt.execute();
++            stmt.setDouble(8, dev.getSalaire());
++            stmt.setDouble(9, dev.getPrime());
++
++            stmt.executeUpdate();
+         } catch (SQLException e) {
+             throw new RuntimeException(e);
+         }
+@@ -91,38 +92,38 @@
+ 
+     @Override
+     public List<Programmeur> GetDevs(){
+-            try {
+-                var conn = GetConn();
+-                var stmt = conn.prepareStatement("SELECT " +
+-                        "(id, lastname, firstname, address, manager, " +
+-                        "hobby, birth_year, salary, bonus, pseudo) " +
+-                        "FROM programmer");
++        try {
++            var conn = GetConn();
++            var stmt = conn.prepareStatement("SELECT " +
++                    "(id, lastname, firstname, address, manager, " +
++                    "hobby, birth_year, salary, bonus, pseudo) " +
++                    "FROM programmer");
+ 
+-                var res = stmt.executeQuery();
+-                var ret = new ArrayList<Programmeur>();
++            var res = stmt.executeQuery();
++            var ret = new ArrayList<Programmeur>();
+ 
+-                while (res.next()) {
+-                    var dev = new Programmeur(res.getInt(1),
+-                            res.getString(2),
+-                            res.getString(3),
+-                            res.getString(4),
+-                            res.getString(5),
+-                            res.getString(6),
+-                            res.getInt(7),
+-                            res.getFloat(8),
+-                            res.getFloat(9),
+-                            res.getString(10));
+-                    ret.add(dev);
+-                    return ret;
+-                }
++            while (res.next()) {
++                var dev = new Programmeur(res.getInt(1),
++                        res.getString(2),
++                        res.getString(3),
++                        res.getString(4),
++                        res.getString(5),
++                        res.getString(6),
++                        res.getInt(7),
++                        res.getFloat(8),
++                        res.getFloat(9),
++                        res.getString(10));
++                ret.add(dev);
++                return ret;
++            }
+ 
+ 
+-            } catch (SQLException e) {
+-                System.out.println("Error: The table is empty");
+-                return null;
+-            }
++        } catch (SQLException e) {
++            System.out.println("Error: The table is empty");
++            return null;
++        }
+ 
+-            return null;
++        return null;
+     }
+ 
+     @Override
+@@ -150,7 +151,7 @@
+                 try {
+                     var conn = GetConn();
+                     var stmt = conn.prepareStatement("UPDATE programmer" +
+-                            "SET NOM = ?\n" +
++                            "SET lastname = ?\n" +
+                             "WHERE id = ?");
+ 
+                     stmt.setString(2, new_nom);

@@ -1,0 +1,38 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.sql.*;\r\nimport java.util.*;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n\r\n        ListeProgrammeurs listeProgrammeur = new ListeProgrammeurs();\r\n\r\n        try{\r\n            Connection connection = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/bdtpjava\",\"root\", \"Manon2004!\");\r\n            PreparedStatement prstmt = connection.prepareStatement(\"SELECT * FROM programmeur\");\r\n            ResultSet resultSet = prstmt.executeQuery();\r\n            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();\r\n\r\n            while(resultSet.next()){\r\n                    String nom = resultSet.getString(\"NOM\");\r\n                    String prenom = resultSet.getString(\"PRENOM\");\r\n                    String anNaissance = resultSet.getString(\"ANNAISSANCE\");\r\n                    String salaire = resultSet.getString(\"SALAIRE\");\r\n                    String prime = resultSet.getString(\"PRIME\");\r\n                    String pseudo = resultSet.getString(\"PSEUDO\");\r\n                    Programmeur programmeur = new Programmeur(nom, prenom, anNaissance, salaire, prime, pseudo);\r\n                    listeProgrammeur.addProgrammeur(programmeur);\r\n            }\r\n\r\n            for(Programmeur programmeur : listeProgrammeur.liste_programmeur_){\r\n                System.out.println(programmeur);\r\n            }\r\n            for(Programmeur programmeur : listeProgrammeur.liste_programmeur_){\r\n                if(!Objects.equals(programmeur.getNom(), \"Simpson\")){\r\n                    System.out.println(programmeur);\r\n                }\r\n            }\r\n\r\n            prstmt.close();\r\n            connection.close();\r\n        }\r\n        catch (SQLException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -1,13 +1,13 @@
+ import java.sql.*;
+ import java.util.*;
+-
+ public class Main {
+-    public static void main(String[] args) {
++    public static void main(String[] args) throws SQLException {
+ 
+         ListeProgrammeurs listeProgrammeur = new ListeProgrammeurs();
+-
++        ResultSet tableProgrammeur = ActionsBDDImpl.selectAll();
++        /*
+         try{
+-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdtpjava","root", "Manon2004!");
++            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
+             PreparedStatement prstmt = connection.prepareStatement("SELECT * FROM programmeur");
+             ResultSet resultSet = prstmt.executeQuery();
+             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+@@ -37,7 +37,7 @@
+         }
+         catch (SQLException e) {
+             throw new RuntimeException(e);
+-        }
++        }*/
+ 
+     }
+ }
+\ No newline at end of file

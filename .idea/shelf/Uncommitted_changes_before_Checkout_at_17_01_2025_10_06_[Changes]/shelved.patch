@@ -1,0 +1,35 @@
+Index: src/ActionsBDDImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class ActionsBDDImpl {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ActionsBDDImpl.java b/src/ActionsBDDImpl.java
+--- a/src/ActionsBDDImpl.java	
++++ b/src/ActionsBDDImpl.java	
+@@ -1,2 +1,23 @@
+-public class ActionsBDDImpl {
++import java.sql.PreparedStatement;
++import java.sql.*;
++import java.util.*;
++
++public class ActionsBDDImpl{
++    static Connection connection;
++
++    static {
++        try {
++            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    //Fonction de récupération des données de la table
++    public static ResultSet selectAll() throws SQLException {
++        PreparedStatement prstmt = connection.prepareStatement("SELECT * FROM programmeur");
++        ResultSet resultSet = prstmt.executeQuery();
++        prstmt.close();
++        return resultSet;
++    }
+ }

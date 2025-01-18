@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7ef85b9b-6d9e-4e2b-a521-6c6a3f808bf0" name="Changes" comment="Ajout du connecteur, résolution du problème de détection de table" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="database_branch_new" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ninjageek78&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1a6a9ba3-7091-43e2-bafa-609b159111e2" />
+        <option name="url" value="https://github.com/ManonKayak/JavaProject.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2pWlqQBj2zj5RQi9I8vgx8OHCzS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Docker.data/Dockerfile.executor": "Run",
+    "Docker.data: Compose Deployment.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Vicen/IdeaProjects/JavaProject/data/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "settings.json.schema.catalog",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ef85b9b-6d9e-4e2b-a521-6c6a3f808bf0" name="Changes" comment="" />
+      <created>1732889902262</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732889902262</updated>
+      <workItem from="1732889903479" duration="244000" />
+      <workItem from="1732890353286" duration="4586000" />
+      <workItem from="1733126411904" duration="8000" />
+      <workItem from="1733509344986" duration="1000" />
+      <workItem from="1733853182328" duration="17000" />
+      <workItem from="1733856885582" duration="1000" />
+      <workItem from="1734084128319" duration="1000" />
+      <workItem from="1734562197848" duration="4000" />
+      <workItem from="1734680919210" duration="5960000" />
+      <workItem from="1737097264879" duration="7946000" />
+      <workItem from="1737135994700" duration="26755000" />
+    </task>
+    <task id="LOCAL-00001" summary="j'ai mis le docker">
+      <option name="closed" value="true" />
+      <created>1732896002682</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732896002682</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737145064579</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737145064579</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737148025717</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737148025717</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737151270281</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737151270281</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737152708093</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737152708093</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737154660644</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737154660644</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737155365114</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737155365114</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737157935598</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737157935598</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Ajout du connecteur, résolution du problème de détection de table">
+      <option name="closed" value="true" />
+      <created>1737169736240</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737169736240</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="database_branch_new_new" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="j'ai mis le docker" />
+    <MESSAGE value="Ajout du connecteur, résolution du problème de détection de table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du connecteur, résolution du problème de détection de table" />
+  </component>
+</project>

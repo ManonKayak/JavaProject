@@ -2,43 +2,43 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * The interface Actions bdd.
+ * L'interface Actions bdd.
  */
 public interface ActionsBDD {
     /**
      * Add dev.
      *
-     * @param dev the dev
-     * @throws SQLException the sql exception
+     * @param dev le programmeur à ajouter
      */
     void AddDev(Programmeur dev) throws SQLException;
 
     /**
      * Delete dev.
      *
-     * @param id the id
+     * @param id l'identifiant du programmeur à supprimer
      */
     void DeleteDev(int id);
 
     /**
-     * Get dev programmeur.
+     * Get dev.
      *
-     * @param id the id
-     * @return the programmeur
+     * @param id l'identifiant du programmeur cherché
+     * @return le programmeur
      */
     Programmeur GetDev(int id);
 
     /**
-     * Get devs list.
+     * Get devs.
      *
-     * @return the list
+     * @return la liste de tous les programmeurs
      */
     List<Programmeur> GetDevs();
 
     /**
      * Change dev.
      *
-     * @param dev the dev
+     *permet de changer les informations d'un programmeur
+     * @param dev le programmeur dont on veut changer les informations
      */
     void ChangeDev(Programmeur dev);
 }

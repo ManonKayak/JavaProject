@@ -1,7 +1,9 @@
 import java.util.*;
 
 /**
- * The type Menu.
+ * La classe Menu.
+ *
+ * Affiche le menu et appelle les fonctions de la class ActionsBDDImpl qui vont modifier notre base de donnée
  */
 public class Menu {
     /**
@@ -34,8 +36,8 @@ public class Menu {
             String choix = scanChoix.nextLine();
 
             ActionsBDDImpl action = new ActionsBDDImpl();
-            List<Programmeur> listeProgrammeurs = action.GetDevs();
 
+            // Selon le choix de l'urilisateur, appelle les fonctions nécessaires
             switch(choix) {
                 case "1":
                     List<Programmeur> programmeurs = action.GetDevs();

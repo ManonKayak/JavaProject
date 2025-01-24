@@ -1,5 +1,5 @@
 /**
- * The type Programmeur.
+ * La class Programmeur.
  */
 public class Programmeur {
     private int id;
@@ -14,18 +14,18 @@ public class Programmeur {
     private String pseudo;
 
     /**
-     * Instantiates a new Programmeur.
+     * Instantie un nouveau Programmeur.
      *
-     * @param id          the id
-     * @param nom         the nom
-     * @param prenom      the prenom
-     * @param adresse     the adresse
-     * @param manager     the manager
-     * @param hobby       the hobby
-     * @param anNaissance the an naissance
-     * @param salaire     the salaire
-     * @param prime       the prime
-     * @param pseudo      the pseudo
+     * @param id          l'identifiant
+     * @param nom         le nom
+     * @param prenom      le prenom
+     * @param adresse     l'adresse
+     * @param manager     le manager
+     * @param hobby       le hobby
+     * @param anNaissance l'annee de naissance
+     * @param salaire     le salaire
+     * @param prime       la prime
+     * @param pseudo      le pseudo
      */
     public Programmeur(int id, String nom, String prenom, String adresse,
                        String manager, String hobby, int anNaissance,
@@ -45,21 +45,21 @@ public class Programmeur {
     /**
      * Gets id.
      *
-     * @return the id
+     * @return l'identifiant du programmeur
      */
     public int getId() { return id; }
 
     /**
      * Sets id.
      *
-     * @param id the id
+     * @param id l'identifiant du programmeur
      */
     public void setId(int id) { this.id = id; }
 
     /**
      * Gets nom.
      *
-     * @return the nom
+     * @return le nom du programmeur
      */
     public String getNom() {
         return nom;
@@ -68,7 +68,7 @@ public class Programmeur {
     /**
      * Sets nom.
      *
-     * @param nom the nom
+     * @param nom le nom du programmeur
      */
     public void setNom(String nom) {
         this.nom = nom;
@@ -77,7 +77,7 @@ public class Programmeur {
     /**
      * Gets prenom.
      *
-     * @return the prenom
+     * @return le prenom du programmeur
      */
     public String getPrenom() {
         return prenom;
@@ -86,14 +86,14 @@ public class Programmeur {
     /**
      * Sets prenom.
      *
-     * @param prenom the prenom
+     * @param prenom le prenom du programmeur
      */
     public void setPrenom(String prenom) { this.prenom = prenom; }
 
     /**
      * Gets adresse.
      *
-     * @return the adresse
+     * @return l'adresse du programmeur
      */
     public String getAdresse() {
         return adresse;
@@ -102,14 +102,14 @@ public class Programmeur {
     /**
      * Sets adresse.
      *
-     * @param adresse the adresse
+     * @param adresse l'adresse du programmeur
      */
     public void setAdresse(String adresse) { this.adresse = adresse; }
 
     /**
      * Gets manager.
      *
-     * @return the manager
+     * @return le manager du programmeur
      */
     public String getManager() {
         return manager;
@@ -118,14 +118,14 @@ public class Programmeur {
     /**
      * Sets manager.
      *
-     * @param manager the manager
+     * @param manager le manager du programmeur
      */
     public void setManager(String manager) { this.manager = manager; }
 
     /**
      * Gets hobby.
      *
-     * @return the hobby
+     * @return le hobby du programmeur
      */
     public String getHobby() {
         return hobby;
@@ -134,14 +134,14 @@ public class Programmeur {
     /**
      * Sets hobby.
      *
-     * @param hobby the hobby
+     * @param hobby le hobby du programmeur
      */
     public void setHobby(String hobby) { this.hobby = hobby; }
 
     /**
      * Gets an naissance.
      *
-     * @return the an naissance
+     * @return l'annee de naissance du programmeur
      */
     public int getAnNaissance() {
         return anNaissance;
@@ -150,7 +150,7 @@ public class Programmeur {
     /**
      * Sets an naissance.
      *
-     * @param anNaissance the an naissance
+     * @param anNaissance l'annee de naissance du programmeur
      */
     public void setAnNaissance(int anNaissance) {
         this.anNaissance = anNaissance;
@@ -159,7 +159,7 @@ public class Programmeur {
     /**
      * Gets salaire.
      *
-     * @return the salaire
+     * @return le salaire du programmeur
      */
     public double getSalaire() {
         return salaire;
@@ -168,7 +168,7 @@ public class Programmeur {
     /**
      * Sets salaire.
      *
-     * @param salaire the salaire
+     * @param salaire le salaire du programmeur
      */
     public void setSalaire(float salaire) {
         this.salaire = salaire;
@@ -177,7 +177,7 @@ public class Programmeur {
     /**
      * Gets prime.
      *
-     * @return the prime
+     * @return la prime du programmeur
      */
     public double getPrime() {
         return prime;
@@ -186,7 +186,7 @@ public class Programmeur {
     /**
      * Sets prime.
      *
-     * @param prime the prime
+     * @param prime la prime du programmeur
      */
     public void setPrime(float prime) {
         this.prime = prime;
@@ -195,7 +195,7 @@ public class Programmeur {
     /**
      * Gets pseudo.
      *
-     * @return the pseudo
+     * @return le pseudo du programmeur
      */
     public String getPseudo() {
         return pseudo;
@@ -204,12 +204,17 @@ public class Programmeur {
     /**
      * Sets pseudo.
      *
-     * @param pseudo the pseudo
+     * @param pseudo le pseudo du programmeur
      */
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 
+    /**
+     * To string.
+     *
+     * permet d'afficher le programmeur sous le format spécifié
+     */
     @Override
     public String toString(){
         return  String.format("%-15s: %d%n","Id",this.id)+

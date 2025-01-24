@@ -1,4 +1,3 @@
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,15 +6,29 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * The type Actions bdd.
+ * La class Actions bdd.
+ *
+ * Regroupe les différentes requêtes et actions à effectuer sur la table programmeur
  */
 public class ActionsBDDImpl implements ActionsBDD {
 
+    /**
+     * Get Conn.
+     *
+     * permet d'etablir une connexion avec la base de donnée
+     * @return la connexion obtenu
+     */
     private Connection GetConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur",
                 "root", "Vicente123@");
     }
 
+    /**
+     * Add dev.
+     *
+     * permet d'insérer un programmeur dans la base de donnée
+     * @param dev le programmeur à ajouter
+     */
     @Override
     public void AddDev(Programmeur dev) throws RuntimeException {
         try {
@@ -40,11 +53,19 @@ public class ActionsBDDImpl implements ActionsBDD {
 
             System.out.println("Le programmeur a bien ete ajoute !");
 
-        } catch (SQLException e) {
+        }
+        // Si l'on arrive pas à ajouter unn nouveau programmeur dans la base de donnée c'est qu'il en existe déjà un avec le même identifiant
+        // L'identifiant étant unique cela nous renvoie une errreur
+        catch (SQLException e) {
             System.out.println("Id non valide !");
         }
     }
 
+    /**
+     * Delete dev.
+     *
+     * @param id l'identifiant du programmeur à supprimer
+     */
     @Override
     public void DeleteDev(int id) throws RuntimeException {
         try {
@@ -56,11 +77,18 @@ public class ActionsBDDImpl implements ActionsBDD {
 
             stmt.executeUpdate();
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("Id non trouvee");
         }
     }
 
+    /**
+     * Get dev.
+     *
+     * @param id l'identifiant du programmeur cherché
+     * @return le programmeur
+     */
     @Override
     public Programmeur GetDev(int id) {
         try {
@@ -80,12 +108,18 @@ public class ActionsBDDImpl implements ActionsBDD {
                     res.getFloat(9),
                     res.getString(10));
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("ID non trouvee");
             return null;
         }
     }
 
+    /**
+     * Get devs.
+     *
+     * @return la liste de tous les programmeurs
+     */
     @Override
     public List<Programmeur> GetDevs(){
             try {
@@ -111,13 +145,21 @@ public class ActionsBDDImpl implements ActionsBDD {
                 return ret;
 
 
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 System.out.println("Error: The table is empty");
                 return null;
             }
     }
 
+    /**
+     * Change dev.
+     *
+     *permet de changer les informations d'un programmeur
+     * @param dev le programmeur dont on veut changer les informations
+     */
     public void ChangeDev(Programmeur dev) throws RuntimeException {
+        // Ici l'utilisateur choisi l'élément qu'il souhaite changer
         System.out.println("Que souhaitez-vous modifier ?");
         System.out.println("1. Le nom");
         System.out.println("2. Le prenom");
@@ -132,6 +174,8 @@ public class ActionsBDDImpl implements ActionsBDD {
         Scanner scanModif = new Scanner(System.in);
         String modif = scanModif.nextLine();
 
+        // Pour chaque cas, le nom de la colonne à modifier est différent
+        // On a donc séparé tous les cas
         switch (modif){
             case "1":
                 System.out.println("Entrez le nouveau nom du programmeur :");
@@ -142,7 +186,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
                             "SET NOM = ?\n" +
-                            "WHERE id = ?");
+                            "WHERE ID = ?");
 
                     stmt.setString(1, new_nom);
                     stmt.setInt(2, dev.getId());
@@ -162,7 +206,7 @@ public class ActionsBDDImpl implements ActionsBDD {
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
                             "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "WHERE ID = ?");
                     stmt.setString(1, new_prenom);
                     stmt.setInt(2, dev.getId());
 
@@ -180,8 +224,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET ADRESSE = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setString(1, new_adress);
                     stmt.setInt(2, dev.getId());
 
@@ -199,8 +243,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET MANAGER = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setString(1, new_manager);
                     stmt.setInt(2, dev.getId());
                     stmt.executeUpdate();
@@ -217,8 +261,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET HOBBY = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setString(1, new_hobby);
                     stmt.setInt(2, dev.getId());
                     stmt.executeUpdate();
@@ -235,8 +279,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET ANNAISSANCE = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setInt(1, new_AnNaissance);
                     stmt.setInt(2, dev.getId());
                     stmt.executeUpdate();
@@ -253,8 +297,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET SALAIRE = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setFloat(1, new_salaire);
                     stmt.setInt(2, dev.getId());
                     stmt.executeUpdate();
@@ -271,8 +315,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET PRIME = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setFloat(1, new_prime);
                     stmt.setInt(2, dev.getId());
                     stmt.executeUpdate();
@@ -289,8 +333,8 @@ public class ActionsBDDImpl implements ActionsBDD {
                 try{
                     var conn = GetConn();
                     var stmt = conn.prepareStatement("UPDATE programmeur " +
-                            "SET PRENOM = ?\n" +
-                            "WHERE id = ?");
+                            "SET PSEUDO = ?\n" +
+                            "WHERE ID = ?");
                     stmt.setString(1, new_pseudo);
                     stmt.setInt(2, dev.getId());
                     stmt.executeUpdate();

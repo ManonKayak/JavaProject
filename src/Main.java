@@ -1,27 +1,24 @@
-import java.io.IOException;
 import java.sql.*;
-import java.util.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class Main {
     /**
-     * The entry point of application.
+     * L'entrée dans le programme.
      *
-     * @param args the input arguments
-     * @throws SQLException the sql exception
+     * @param args
+     * @throws SQLException
      */
+    // On avait une class start qui n'aurait fait qu'appeler la class Main
+    // Nous savons que vous aviez demandez une ou deux lignes dans le main, mais ne n'avons pas vu l'intérêt de garder une class pour une seule ligne
     public static void main(String[] args) throws SQLException {
-        while(true){
         try {
-            // Étape 1 : Démarrer Docker Compose
+            // Demarre Docker Compose
             System.out.println("Démarrage de Docker Compose...");
             ProcessBuilder dockerCompose = new ProcessBuilder(
                     "docker-compose", "-f", "docker-compose.yml", "up", "-d"
             );
             Process composeProcess = dockerCompose.start();
 
-            // Étape 2 : Attendre que la base de données soit prête
+            // Attend que la base de données soit prête
             System.out.println("Attente que la base de données soit prête...");
             boolean baseDeDonneesPrete = false;
             while (!baseDeDonneesPrete) {
@@ -37,37 +34,20 @@ public class Main {
             }
             System.out.println("Base de données prête !");
 
-            // Étape 3 : Exécuter l'application principale
+            // Execute l'application principale
             System.out.println("Lancement de l'application Java...");
-            // Ici, mettez votre code principal
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ActionsBDDImpl action = new ActionsBDDImpl();
-        List<Programmeur> listeProgrammeur = new ArrayList<>();
-            try{
+        // Teste si la table programmeur existe
+        // Si une erreur apparait en selectionnant les programmeurs de la table,
+        // cela est très probable qu'elle n'existe pas. On la créer donc
+        try{
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/programmeur","root", "Vicente123@");
             PreparedStatement prstmt = connection.prepareStatement("SELECT * FROM programmeur");
-            ResultSet resultSet = prstmt.executeQuery();
-            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-
-            while(resultSet.next()){
-                    int id = resultSet.getInt("ID");
-                    String nom = resultSet.getString("NOM");
-                    String prenom = resultSet.getString("PRENOM");
-                    String adresse = resultSet.getString("ADRESSE");
-                    String manager = resultSet.getString("MANAGER");
-                    String hobby = resultSet.getString("HOBBY");
-                    int anNaissance = resultSet.getInt("ANNAISSANCE");
-                    float salaire = resultSet.getFloat("SALAIRE");
-                    float prime = resultSet.getFloat("PRIME");
-                    String pseudo = resultSet.getString("PSEUDO");
-                    Programmeur programmeur = new Programmeur(id,nom, prenom,adresse,manager,hobby, anNaissance, salaire, prime, pseudo);
-                    listeProgrammeur.add(programmeur);
-            }
-
-
+            prstmt.executeQuery();
             prstmt.close();
             connection.close();
         }
@@ -87,8 +67,8 @@ public class Main {
                     "PSEUDO VARCHAR(50) NOT NULL)");
         }
 
+        // Affiche le menu et permet de modifier la table
         Menu.afficherMenu();
 
     }
-}
 }
